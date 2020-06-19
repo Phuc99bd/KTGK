@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KTGK.Models;
 
 namespace KTGK.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private ManageProduct db = new ManageProduct();
+
+        public ActionResult Index(int page = 1 , int pageSize =7 , string search = "")
         {
-            return View();
+            List<Product> product = db.Products.ToList();
+            return View(product);
         }
 
         public ActionResult About()
